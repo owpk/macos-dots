@@ -1,0 +1,6 @@
+require("items.widgets.battery")
+require("items.widgets.volume")
+sbar.add("alias", "TextInputMenuAgent", { position = "right" })
+--require("items.widgets.wifi")
+--require("items.widgets.cpu")
+--require("items.widgets.mem")

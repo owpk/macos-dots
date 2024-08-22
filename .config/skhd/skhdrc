@@ -1,0 +1,53 @@
+# focus
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - h : if [ "$(yabai -m query --spaces --space | jq -r '.type')" = "stack" ]; then (yabai -m window --focus stack.prev || yabai -m window --focus stack.last); else yabai -m window --focus west; fi
+alt - l : if [ "$(yabai -m query --spaces --space | jq -r '.type')" = "stack" ]; then (yabai -m window --focus stack.next || yabai -m window --focus stack.first); else yabai -m window --focus east; fi
+alt - i : yabai -m window --toggle float --grid 4:4:1:1:2:2
+alt - f : yabai -m window --toggle zoom-fullscreen
+
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north
+shift + alt - h : yabai -m window --swap west
+shift + alt - l : yabai -m window --swap east
+
+shift + alt - r : yabai -m space --rotate 270
+shift + alt - e : yabai -m space --balance
+
+# resize
+ctrl + alt - left : yabai -m window west --resize right:-20:0 2> /dev/null || yabai -m window --resize right:-20:0
+ctrl + alt - up : yabai -m window north --resize bottom:0:20 2> /dev/null || yabai -m window --resize bottom:0:20
+ctrl + alt - down : yabai -m window south --resize top:0:-20 2> /dev/null || yabai -m window --resize top:0:-20
+ctrl + alt - right : yabai -m window east --resize left:20:0 2> /dev/null || yabai -m window --resize left:20:0
+
+# workpsace
+shift + alt - 1 : yabai -m window --space 1
+shift + alt - 2 : yabai -m window --space 2
+shift + alt - 3 : yabai -m window --space 3
+shift + alt - 4 : yabai -m window --space 4
+shift + alt - 5 : yabai -m window --space 5
+shift + alt - 6 : yabai -m window --space 6
+
+# toggle stack/bsp
+alt - v : yabai -m config --space $(yabai -m query --spaces --space | jq -r .index) layout $(yabai -m query --spaces --space | jq -r 'if .type|contains("stack") then "bsp" else "stack" end')
+
+# bindings 
+# return
+alt - return : open -na /opt/homebrew/bin/alacritty
+
+# q
+alt - q : yabai -m window --close
+
+# w
+alt - w : $HOME/.config/sway/scripts/browser-search.sh
+
+# e
+alt - e : $HOME/.config/sway/scripts/translate.sh ru
+shift + alt - e : $HOME/.config/sway/scripts/translate.sh en
+
+# y
+alt - y : screencapture -i -c
+
+# u
+alt - u: screencapture -i -c && pngpaste - | tesseract stdin stdout | LANG=en_EN.UTF-8 pbcopy
+shift + alt - u: screencapture -i -c && pngpaste - | tesseract stdin stdout -l rus | LANG=ru_RU.UTF-8 pbcopy
