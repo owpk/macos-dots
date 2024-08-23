@@ -3,8 +3,8 @@
 # Explanation of the script:
 # 
 # 1. Main project:
-# • git fetch origin master: Get updates from the master branch of the remote repository.
-# • git merge -X ours origin/master: Merge changes from the remote repository into the current local branch with the -X ours option, which in case of a conflict accepts the current local changes.
+# • git fetch origin main: Get updates from the master branch of the remote repository.
+# • git merge -X ours origin/main: Merge changes from the remote repository into the current local branch with the -X ours option, which in case of a conflict accepts the current local changes.
 # 2. Submodules:
 # • git submodule update --remote --recursive: Update all submodules, switching them to the latest commits in their branches.
 # • git submodule foreach --recursive ...: Go through each submodule and perform the same update as for the main project.
@@ -24,8 +24,8 @@
 # Пояснение к скрипту:
 # 
 # 	1.	Основной проект:
-# 	•	git fetch origin master: Получаем обновления из ветки master удаленного репозитория.
-# 	•	git merge -X ours origin/master: Мержим изменения с удаленного репозитория в текущую локальную ветку с опцией -X ours, которая в случае конфликта принимает текущие локальные изменения.
+# 	•	git fetch origin main: Получаем обновления из ветки master удаленного репозитория.
+# 	•	git merge -X ours origin/main: Мержим изменения с удаленного репозитория в текущую локальную ветку с опцией -X ours, которая в случае конфликта принимает текущие локальные изменения.
 # 	2.	Сабмодули:
 # 	•	git submodule update --remote --recursive: Обновляем все сабмодули, переключая их на последние коммиты в их ветках.
 # 	•	git submodule foreach --recursive ...: Проходим по каждому сабмодулю и выполняем аналогичное обновление, как и для основного проекта.
@@ -46,8 +46,8 @@ git config diff.submodule log
 git config -f .gitmodules submodule.server-dots.branch main
 
 # Обновление основного проекта
-git fetch origin master
-git merge -X ours origin/master
+git fetch origin main
+git merge -X ours origin/main
 
 # Обновление всех сабмодулей
 git submodule update --remote --recursive
