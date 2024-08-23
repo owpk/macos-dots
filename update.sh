@@ -70,6 +70,7 @@ git submodule update --remote --recursive
 # Проход по всем сабмодулям и мерж изменений
 git submodule foreach --recursive '
     branch=$(git rev-parse --abbrev-ref HEAD)
+    echo "HELLO --- $branch"
     git fetch origin $branch
     git merge -X ours origin/$branch
 '
