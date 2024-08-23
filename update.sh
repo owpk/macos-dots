@@ -44,28 +44,13 @@
 
 # Configs
 git config --global core.editor "vim -w"
-git config diff.submodule log
+
+./server-dots/update.sh
 
 # Сообщение для коммита
 COMMIT_MESSAGE="$(date +'%Y-%m-%d')-updates"
-
-#Проход по каждому сабмодулю и выполнение коммита
-git submodule foreach --recursive '
-    git add .
-    git commit -m "$COMMIT_MESSAGE"
-'
-
-# Обновляем индекс основного проекта с новым состоянием сабмодулей
 git add .
 git commit -m "$COMMIT_MESSAGE"
 
 # Обновление основного проекта
 git pull -X ours origin main
-
-# Проход по всем сабмодулям и мерж изменений
-git submodule foreach --recursive '
-    git fetch origin main
-    git pull -X ours origin main
-'
-
-
