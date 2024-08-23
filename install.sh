@@ -17,14 +17,9 @@ git config user.email "--auto--"
 git submodule add https://github.com/owpk/server-dots
 git submodule init
 
-cp scripts/* $HOME/.local/bin
+stow --adopt -vt $LOCAL_BIN scripts 
 
-./server-dots/install-wo-githooks.sh
+./server-dots/install.sh
 
 # Создаем и переключаемся на новую ветку в основном проекте
 git checkout -b "$USER"
-
-# Проходим по каждому сабмодулю и создаем ветку с тем же именем
-git submodule foreach --recursive '
-    git checkout -b "$USER"
-'
