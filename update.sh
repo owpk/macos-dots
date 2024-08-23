@@ -56,7 +56,7 @@ git submodule foreach --recursive '
     git commit -m "$COMMIT_MESSAGE"
 '
 
-echo "Обновляем индекс основного проекта с новым состоянием сабмодулей"
+# Обновляем индекс основного проекта с новым состоянием сабмодулей
 git add .
 git commit -m "$COMMIT_MESSAGE"
 
