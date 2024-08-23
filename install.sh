@@ -4,11 +4,12 @@ mkdir $HOME/.config
 mkdir $HOME/.local/bin
 
 CFG=$HOME/.config
+mkdir $CFG 2> /dev/null
 CUR=$(pwd)
 
-stow --adopt -vt $CUR/.config $CFG
-ln -s $CUR/.zshenv $HOME/
-ln -s $CUR/.tmux.conf $HOME/
+stow --adopt -vt $CFG .config
+ln -snf $CUR/.zshenv $HOME/
+ln -snf $CUR/.tmux.conf $HOME/
 
 git submodule add https://github.com/owpk/server-dots
 git submodule init
