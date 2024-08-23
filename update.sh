@@ -64,20 +64,10 @@ COMMIT_MESSAGE="$(date +'%Y-%m-%d')-updates"
 
 # Проход по каждому сабмодулю и выполнение коммита
 git submodule foreach --recursive '
-    if [ -n "$(git status --porcelain)" ]; then
-        git add .
-        git commit -m "$COMMIT_MESSAGE"
-    else
-        echo "Нет изменений для коммита в сабмодуле $name"
-    fi
+    git add .
+    git commit -m "$COMMIT_MESSAGE"
 '
 
 # Обновляем индекс основного проекта с новым состоянием сабмодулей
 git add .
-
-# Коммитим изменения в основном проекте
-if [ -n "$(git status --porcelain)" ]; then
-    git commit -m "$COMMIT_MESSAGE"
-else
-    echo "Нет изменений для коммита в основном проекте"
-fi
+git commit -m "$COMMIT_MESSAGE"
