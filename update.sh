@@ -42,9 +42,23 @@
 # Этот скрипт будет обновлять ваш основной проект и сабмодули, 
 # разрешая конфликты в пользу локальных изменений.
 
+# Configs
 git config --global core.editor "vim -w"
 git config diff.submodule log
 git config -f .gitmodules submodule.server-dots.branch main
+
+# Сообщение для коммита
+COMMIT_MESSAGE="$(date +'%Y-%m-%d')-updates"
+
+#Проход по каждому сабмодулю и выполнение коммита
+git submodule foreach --recursive '
+    git add .
+    git commit -m "$COMMIT_MESSAGE"
+'
+
+echo "Обновляем индекс основного проекта с новым состоянием сабмодулей"
+git add .
+git commit -m "$COMMIT_MESSAGE"
 
 # Обновление основного проекта
 git fetch origin main
@@ -60,15 +74,4 @@ git submodule foreach --recursive '
     git merge -X ours origin/$branch
 '
 
-# Сообщение для коммита
-COMMIT_MESSAGE="$(date +'%Y-%m-%d')-updates"
 
-echo "Проход по каждому сабмодулю и выполнение коммита"
-git submodule foreach --recursive '
-    git add .
-    git commit -m "$COMMIT_MESSAGE"
-'
-
-echo "Обновляем индекс основного проекта с новым состоянием сабмодулей"
-git add .
-git commit -m "$COMMIT_MESSAGE"
