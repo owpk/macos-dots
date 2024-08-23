@@ -62,12 +62,12 @@ git submodule foreach --recursive '
 # Сообщение для коммита
 COMMIT_MESSAGE="$(date +'%Y-%m-%d')-updates"
 
-# Проход по каждому сабмодулю и выполнение коммита
+echo "Проход по каждому сабмодулю и выполнение коммита"
 git submodule foreach --recursive '
     git add .
     git commit -m "$COMMIT_MESSAGE"
 '
 
-# Обновляем индекс основного проекта с новым состоянием сабмодулей
+echo "Обновляем индекс основного проекта с новым состоянием сабмодулей"
 git add .
 git commit -m "$COMMIT_MESSAGE"
