@@ -59,6 +59,25 @@ git submodule foreach --recursive '
     git merge -X ours origin/$branch
 '
 
-# Обновление состояния сабмодулей в основном проекте
+# Сообщение для коммита
+COMMIT_MESSAGE="$(date +'%Y-%m-%d')-updates"
+
+# Проход по каждому сабмодулю и выполнение коммита
+git submodule foreach --recursive '
+    if [ -n "$(git status --porcelain)" ]; then
+        git add .
+        git commit -m "$COMMIT_MESSAGE"
+    else
+        echo "Нет изменений для коммита в сабмодуле $name"
+    fi
+'
+
+# Обновляем индекс основного проекта с новым состоянием сабмодулей
 git add .
-git commit -m "$(date +'%Y-%m-%d')-updates"
+
+# Коммитим изменения в основном проекте
+if [ -n "$(git status --porcelain)" ]; then
+    git commit -m "$COMMIT_MESSAGE"
+else
+    echo "Нет изменений для коммита в основном проекте"
+fi
