@@ -42,6 +42,7 @@
 # Этот скрипт будет обновлять ваш основной проект и сабмодули, 
 # разрешая конфликты в пользу локальных изменений.
 
+git config --global core.editor "vim -w"
 git config diff.submodule log
 git config -f .gitmodules submodule.server-dots.branch main
 
