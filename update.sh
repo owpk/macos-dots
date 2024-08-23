@@ -45,7 +45,6 @@
 # Configs
 git config --global core.editor "vim -w"
 git config diff.submodule log
-git config -f .gitmodules submodule.server-dots.branch main
 
 # Сообщение для коммита
 COMMIT_MESSAGE="$(date +'%Y-%m-%d')-updates"
@@ -61,15 +60,15 @@ git add .
 git commit -m "$COMMIT_MESSAGE"
 
 # Обновление основного проекта
-git pull -X ours origin main
-
-# Обновление всех сабмодулей
-git submodule update --remote --recursive
-
-# Проход по всем сабмодулям и мерж изменений
-git submodule foreach --recursive '
-    git fetch origin main
-    git pull -X ours origin main
-'
+#git pull -X ours origin main
+#
+## Обновление всех сабмодулей
+#git submodule update --remote --recursive
+#
+## Проход по всем сабмодулям и мерж изменений
+#git submodule foreach --recursive '
+#    git fetch origin main
+#    git pull -X ours origin main
+#'
 
 
