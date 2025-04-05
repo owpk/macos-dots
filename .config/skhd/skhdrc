@@ -33,7 +33,7 @@ alt - v : yabai -m config --space $(yabai -m query --spaces --space | jq -r .ind
 
 # bindings 
 # return
-alt - return : open -na /opt/homebrew/bin/alacritty
+# alt - return : open -na /opt/homebrew/bin/alacritty
 
 # q
 alt - q : yabai -m window --close
