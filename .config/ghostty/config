@@ -1,0 +1,7 @@
+window-padding-x = 2,4
+window-padding-y = 2,4
+background-opacity = 0.8
+background-blur-radius = 40
+confirm-close-surface = false
+font-size = 14
+
