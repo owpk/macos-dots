@@ -2,7 +2,7 @@
 
 # Required parameters:
 # @raycast.schemaVersion 1
-# @raycast.title browsersearch
+# @raycast.title screenshot
 # @raycast.mode silent
 
 # Optional parameters:
@@ -12,6 +12,5 @@
 # @raycast.author owpk
 # @raycast.authorURL https://raycast.com/owpk
 
-url=$(pbpaste)
-srch="https://google.com/search?q=${url}"
-$(open "$srch")
+screencapture -i -c
+
